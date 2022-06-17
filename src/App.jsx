@@ -1,8 +1,13 @@
 import React from 'react';
+import GlobalStyle from './styles/theme';
+import MainPage from './MainPage';
 
 function App() {
   return (
-    <div>This is a template. Create component(s) to make your own app.</div>
+    <>
+      <GlobalStyle />
+      <MainPage />
+    </>
   );
 }
 
