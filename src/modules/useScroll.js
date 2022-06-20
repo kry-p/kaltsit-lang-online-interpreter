@@ -1,5 +1,5 @@
-/*
- * 스크롤 위치 훅
+/**
+ * Scroll position hook
  */
 import { useState, useEffect } from 'react';
 

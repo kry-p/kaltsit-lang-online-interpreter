@@ -1,3 +1,6 @@
+/**
+ * Global theme
+ */
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
@@ -30,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
+    scroll-behavior: smooth;
+  }
+
+  div {
     scroll-behavior: smooth;
   }
 

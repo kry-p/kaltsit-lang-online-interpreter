@@ -1,3 +1,6 @@
+/**
+ * Conversation
+ */
 import React from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../lib/palette';
@@ -6,8 +9,8 @@ export const Conversation = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border: 2px solid white;
 
+  border: 2px solid white;
   margin: 1rem;
   padding: 1rem;
   background: rgba(0, 0, 0, 0.5);
@@ -19,12 +22,11 @@ export const ConversationItem = styled.div`
   display: flex;
   justify-content: flex-start;
 
+  padding-bottom: 1rem;
   border-radius: 1rem;
   border: 0rem;
 
-  padding-bottom: 1rem;
   word-break: break-word;
-
   ${(props) =>
     props.left &&
     css`
@@ -41,9 +43,8 @@ export const ConversationItem = styled.div`
 `;
 
 export const Bubble = styled.div`
-  border-radius: 1rem;
   padding: 1rem;
-
+  border-radius: 1rem;
   ${(props) =>
     props.left &&
     css`
@@ -70,8 +71,9 @@ const StyledOpponentThumbnail = styled.div`
 const StyledOpponentName = styled.div`
   padding-left: 1rem;
   padding-bottom: 0.5rem;
-  font-size: 1.2rem;
+
   color: white;
+  font-size: 1.2rem;
 `;
 
 const StyledOpponentConversationDescription = styled.div`
@@ -89,10 +91,28 @@ export const OpponentConversation = ({ thumbnail, opponentName, scripts }) => {
         <StyledOpponentName>{opponentName}</StyledOpponentName>
         {scripts.map((script) => (
           <ConversationItem key={script} left>
-            <Bubble left dangerouslySetInnerHTML={{ __html: script }} />
+            <Bubble
+              left
+              dangerouslySetInnerHTML={{
+                __html: String.raw`${script}`.replace(/(\n|\r\n)/g, '<br />'),
+              }}
+            />
           </ConversationItem>
         ))}
       </StyledOpponentConversationDescription>
     </StyledOpponentConversation>
+  );
+};
+
+export const MyConversation = ({ script }) => {
+  return (
+    <ConversationItem key={script} right>
+      <Bubble
+        right
+        dangerouslySetInnerHTML={{
+          __html: String.raw`${script}`.replace(/(\n|\r\n)/g, '<br />'),
+        }}
+      />
+    </ConversationItem>
   );
 };
