@@ -17,8 +17,14 @@ const StyledMenuButton = styled.button`
   font-family: MinSans-Medium;
   font-size: 1.2rem;
 
+  transition: all 0.15s ease-in-out;
+
   &:hover {
     background: rgba(64, 64, 64, 0.3);
+  }
+
+  &:active {
+    background: rgba(128, 128, 128, 0.3);
   }
 
   ${(props) =>
@@ -47,6 +53,19 @@ const StyledMenuButton = styled.button`
   }
 `;
 
+const StyledRawButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  background: transparent;
+  border: 0px;
+  color: white;
+  font-family: MinSans-Medium;
+  font-size: 1.2rem;
+`;
+
 export const MenuButton = ({ icon, text, ...props }) => (
   <StyledMenuButton {...props} iconIncluded={!!icon}>
     {icon}
@@ -56,4 +75,8 @@ export const MenuButton = ({ icon, text, ...props }) => (
 
 export const SendButton = ({ text, ...props }) => (
   <MenuButton {...props} small centered text={text} />
+);
+
+export const RawButton = ({ item }) => (
+  <StyledRawButton>{item}</StyledRawButton>
 );

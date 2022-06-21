@@ -9,10 +9,10 @@ const Divider = styled.div`
 
   @media (min-width: 512px) {
     grid-template-rows: auto 12rem;
-    grid-template-columns: 12rem auto;
+    grid-template-columns: 12rem calc(100vw - 12rem);
   }
   @media (min-width: 1024px) {
-    grid-template-columns: 12rem 768px;
+    grid-template-columns: 12rem calc(1024px - 12rem);
   }
 `;
 

@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@uiw/react-markdown-preview": "^4.0.18",
     "await-spawn": "^4.0.2",
     "child-process": "^1.0.2",
     "dotenv": "^16.0.1",
+    "framer-motion": "^6.3.11",
     "kaltsit-lang-node": "^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

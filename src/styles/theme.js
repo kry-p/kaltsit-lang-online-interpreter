@@ -40,6 +40,11 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+  a {
+    text-decoration: none;
+    color:inherit;
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
   }

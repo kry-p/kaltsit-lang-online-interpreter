@@ -85,7 +85,10 @@ export const OpponentConversation = ({ thumbnail, opponentName, scripts }) => {
   return (
     <StyledOpponentConversation>
       <StyledOpponentThumbnail
-        style={{ background: `url(${thumbnail})`, backgroundSize: 'cover' }}
+        style={{
+          backgroundImage: `url(${thumbnail})`,
+          backgroundSize: 'cover',
+        }}
       />
       <StyledOpponentConversationDescription>
         <StyledOpponentName>{opponentName}</StyledOpponentName>

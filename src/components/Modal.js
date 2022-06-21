@@ -5,6 +5,11 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+import { IoMdClose } from 'react-icons/io';
+import { RawButton } from './Button';
+
+import { MODAL_DEFAULT, MODAL_FULL } from '../lib/constants';
+
 const Dummy = styled.div``;
 const ModalBlock = styled.div`
   display: flex;
@@ -21,7 +26,32 @@ const ModalBlock = styled.div`
   z-index: 10;
 `;
 
-const Modal = ({ children, onClose }) => {
+const ModalItem = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.8);
+  overflow: auto;
+`;
+
+const ModalCover = styled.div`
+  display: grid;
+  grid-template-rows: 4rem auto 1rem;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  @media (min-width: 1024px) {
+    width: 1024px;
+  }
+`;
+
+const CloseButtonCover = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const Modal = ({ content, onClose, size }) => {
   const modalCard = useRef();
   const modal = useRef();
 
@@ -40,7 +70,17 @@ const Modal = ({ children, onClose }) => {
   return (
     <ModalBlock ref={modal}>
       <Dummy />
-      <div ref={modalCard}>{children}</div>
+      {size === MODAL_FULL && (
+        <ModalCover>
+          <CloseButtonCover>
+            <RawButton item={<IoMdClose size={24} />} />
+          </CloseButtonCover>
+          <ModalItem ref={modalCard}>{content}</ModalItem>
+        </ModalCover>
+      )}
+      {size === MODAL_DEFAULT && (
+        <ModalItem ref={modalCard}>{content}</ModalItem>
+      )}
       <Dummy />
     </ModalBlock>
   );
