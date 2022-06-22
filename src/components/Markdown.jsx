@@ -116,7 +116,7 @@ const Markdown = () => {
           <MarkdownListItem>다음에 알려주겠다 (나눗셈)</MarkdownListItem>
           <MarkdownListItem>지금은 때가 아니다 (나머지)</MarkdownListItem>
         </MarkdownUnorderedList>
-        갸령,{' '}
+        가령,{' '}
         <MarkdownCodeblock>... ....그리 쉬운 것도 못 하나?</MarkdownCodeblock>와
         같이 사용할 수 있으며 이 경우 3번째 변수와 4번째 변수의 합을 출력하게
         됩니다.

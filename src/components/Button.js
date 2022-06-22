@@ -14,7 +14,7 @@ const StyledMenuButton = styled.button`
   background: rgba(0, 0, 0, 0.3);
 
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
 
   transition: all 0.15s ease-in-out;
 
