@@ -6,8 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin =
-  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const outputDirectory = './build';
 
@@ -54,6 +52,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicon.ico',
       minify: false,
     }),
     new MiniCssExtractPlugin(),
@@ -61,9 +60,13 @@ module.exports = {
       'process.env': JSON.stringify(process.env),
     }),
     new CopyPlugin({
-      patterns: [{ from: 'public/robots.txt', to: 'robots.txt' }],
+      patterns: [
+        { from: 'public/robots.txt', to: 'robots.txt' },
+        { from: 'public/icons', to: 'icons' },
+        { from: 'public/resources', to: 'resources' },
+        { from: 'public/manifest.json', to: 'manifest.json' },
+      ],
     }),
-    // new BundleAnalyzerPlugin(),
   ],
   devServer: {
     port: 3000,
