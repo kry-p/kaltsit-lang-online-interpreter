@@ -5,7 +5,7 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { IoMdClose } from 'react-icons/io';
+import { IoMdClose } from '@react-icons/all-files/io/IoMdClose';
 import { RawButton } from './Button';
 
 import { MODAL_DEFAULT, MODAL_FULL } from '../lib/constants';

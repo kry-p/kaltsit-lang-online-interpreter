@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const outputDirectory = './build';
 
@@ -62,6 +64,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'public/robots.txt', to: 'robots.txt' }],
     }),
+    // new BundleAnalyzerPlugin(),
   ],
   devServer: {
     port: 3000,

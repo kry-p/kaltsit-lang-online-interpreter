@@ -5,14 +5,16 @@ import styled from 'styled-components';
 
 const Background = styled.div`
   position: fixed;
-  top: -50vh;
-  left: -50vw;
+  top: -12.5vh;
+  left: -12.5vw;
 
-  width: 200vw;
-  height: 200vh;
+  width: 125vw;
+  height: 125vh;
 
-  background-image: url(./resources/bg.jpg);
-  filter: brightness(30%) blur(5px);
+  background-image: url(/resources/image/bg.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(45%) blur(10px);
   z-index: -1;
 `;
 

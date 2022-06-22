@@ -6,43 +6,27 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-
+  
   @font-face {
-    font-family: 'MinSans-Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Medium.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  } 
-
-  @font-face {
-    font-family: 'MinSans-Thin';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Thin.woff')
-      format('woff');
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
-
   body {
-    font-family: MinSans-Medium;
+    font-family: GowunDodum-Regular, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     padding: 0;
     margin: 0;
     text-rendering: optimizeLegibility;
   }
 
-  html {
-    scroll-behavior: smooth;
+  button, textarea {
+    font-family: GowunDodum-Regular, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   }
 
   div {
     scroll-behavior: smooth;
-  }
-
-  a {
-    text-decoration: none;
-    color:inherit;
   }
 
   ::-webkit-scrollbar {

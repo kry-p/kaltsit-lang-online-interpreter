@@ -14,7 +14,6 @@ const StyledMenuButton = styled.button`
   background: rgba(0, 0, 0, 0.3);
 
   color: white;
-  font-family: MinSans-Medium;
   font-size: 1.2rem;
 
   transition: all 0.15s ease-in-out;
@@ -62,7 +61,6 @@ const StyledRawButton = styled.button`
   background: transparent;
   border: 0px;
   color: white;
-  font-family: MinSans-Medium;
   font-size: 1.2rem;
 `;
 

@@ -9,7 +9,6 @@ const Textarea = styled.textarea`
   background: transparent;
 
   color: white;
-  font-family: MinSans-Medium;
   font-size: 1rem;
 
   resize: none;
