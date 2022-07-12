@@ -12,21 +12,21 @@ const outputDirectory = './build';
 dotenv.config();
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, outputDirectory),
     publicPath: '/',
     filename: '[id].[chunkhash].js',
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: '/node_modules/',
-        loader: 'babel-loader',
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.svg$/,

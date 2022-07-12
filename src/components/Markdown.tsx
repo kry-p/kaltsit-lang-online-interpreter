@@ -1,7 +1,13 @@
+/**
+ * Markdown
+ */
 // React core
-import React from 'react';
+import * as React from 'react';
+
+// Styled-components
 import styled from 'styled-components';
 
+// StyleComponent
 const MarkdownH2 = styled.div`
   font-size: 1.625rem;
   line-height: 3rem;
@@ -43,6 +49,7 @@ const MarkdownListItem = styled.li`
   line-height: 1.5rem;
 `;
 
+// React functional component
 const Markdown = () => {
   return (
     <MarkdownWrapper>

@@ -2,14 +2,29 @@
  * Modal
  */
 // React core
-import React, { useRef, useEffect } from 'react';
+import * as React from 'react';
+import { useRef, useEffect, ReactNode } from 'react';
+
+// Styled-components
 import styled from 'styled-components';
 
-import { IoMdClose } from '@react-icons/all-files/io/IoMdClose';
+// Component
 import { RawButton } from './Button';
 
-import { MODAL_DEFAULT, MODAL_FULL } from '../lib/constants';
+// Icon
+import { IoMdClose } from '@react-icons/all-files/io/IoMdClose';
 
+// Misc.
+import { MODAL } from '../lib/constants';
+
+// React functional component variable types
+type ModalProps = {
+  content: ReactNode;
+  onClose: Function;
+  size: number;
+};
+
+// StyledComponent
 const Dummy = styled.div``;
 const ModalBlock = styled.div`
   display: flex;
@@ -51,13 +66,14 @@ const CloseButtonCover = styled.div`
   justify-content: flex-end;
 `;
 
-const Modal = ({ content, onClose, size }) => {
-  const modalCard = useRef();
-  const modal = useRef();
+// React functional component
+const Modal = ({ content, onClose, size }: ModalProps) => {
+  const modalCard = useRef() as React.MutableRefObject<HTMLHeadingElement>;
+  const modal = useRef() as React.MutableRefObject<HTMLHeadingElement>;
 
   // 모달 외부 클릭 감지
   useEffect(() => {
-    function handleClickOutside(e) {
+    function handleClickOutside(e: React.BaseSyntheticEvent | MouseEvent) {
       if (modalCard.current && !modalCard.current.contains(e.target)) {
         onClose();
       }
@@ -70,15 +86,15 @@ const Modal = ({ content, onClose, size }) => {
   return (
     <ModalBlock ref={modal}>
       <Dummy />
-      {size === MODAL_FULL && (
+      {size === MODAL.FULL && (
         <ModalCover>
           <CloseButtonCover>
-            <RawButton item={<IoMdClose size={24} />} />
+            <RawButton icon={<IoMdClose size={24} />} />
           </CloseButtonCover>
           <ModalItem ref={modalCard}>{content}</ModalItem>
         </ModalCover>
       )}
-      {size === MODAL_DEFAULT && (
+      {size === MODAL.DEFAULT && (
         <ModalItem ref={modalCard}>{content}</ModalItem>
       )}
       <Dummy />

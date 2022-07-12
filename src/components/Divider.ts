@@ -1,8 +1,10 @@
 /**
  * App divider
  */
+// Styled-components
 import styled from 'styled-components';
 
+// StyledComponent
 const Divider = styled.div`
   display: grid;
   grid-template-rows: 5rem auto 8rem;

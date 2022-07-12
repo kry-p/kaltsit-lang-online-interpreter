@@ -2,66 +2,71 @@
  * Main page
  */
 // React core
-import React, { useState, useRef } from 'react';
+import * as React from 'react';
+import { useState, useRef } from 'react';
+
+// Framer-motion
+import { motion, AnimatePresence } from 'framer-motion';
+import animation from './styles/animation';
+
 // Components
-import Background from './components/Background';
-import Input from './components/Input';
-import Textarea from './components/Textarea';
-import Menu from './components/Menu';
-import Divider from './components/Divider';
-import Modal from './components/Modal';
 import { MenuButton, SendButton } from './components/Button';
 import {
   Conversation,
   OpponentConversation,
   MyConversation,
 } from './components/Conversation';
+
+import StyledBackground from './components/Background';
+import Divider from './components/Divider';
+import Input from './components/Input';
+import Markdown from './components/Markdown';
+import Menu from './components/Menu';
+import Modal from './components/Modal';
+import Textarea from './components/Textarea';
+
 // Icons
 import { BiCommentX } from '@react-icons/all-files/bi/BiCommentX';
 import { BiHelpCircle } from '@react-icons/all-files/bi/BiHelpCircle';
 import { AiOutlineGithub } from '@react-icons/all-files/ai/AiOutlineGithub';
+
 // Hooks
 import useWindow from './modules/useWindow';
+
 // Modules
 import run from './modules/kaltsit';
 import sleep from './modules/sleep';
+
 // Misc.
-import { EXAMPLE_CODE, MODAL_FULL } from './lib/constants';
-import { motion, AnimatePresence } from 'framer-motion';
-import animation from './styles/animation';
-import Markdown from './components/Markdown';
+import { MODAL } from './lib/constants';
+import {
+  MESSAGE_KALTSIT_TUTORIAL,
+  MESSAGE_PRTS_ON_CLEAR,
+  PLACEHOLDER,
+  BUTTON,
+  USERNAME,
+  MESSAGE_PRTS_UNDEFINED_OPERATION,
+  EXAMPLE_CODE,
+} from './lib/scripts';
 
-const tutorial = [
-  `박사, 나와 대화하는 법을 안내하도록 하지.`,
-  `"켈시어"라는 프로그래밍 언어의 코드로 나에게 말을 걸어라.
-그러면 거기에 맞춰서 내가 적절히 대답한다.
-그런 건 모르겠다고? 그것도 할 줄 모르나?
-왼쪽 사용법 탭에 사용 방법이 기록되어 있으니 참고하도록.`,
-  `또, 정상적인 코드로 말을 걸었는데 내가 할 말이 없다면 (할 말 없음)으로 대답한다.`,
-  `현재 사용 가능한 예시 코드를 가져오는 명령은 아래와 같다.
-
-  /helloworld - Hello world
-  /multi - 구구단`,
-];
-const onClear = [`(이전 대화 기록을 모두 지웠습니다.)`];
-
-function MainPage() {
+const MainPage = () => {
   const window = useWindow();
-  const [code, setCode] = useState('');
+  const [modal, setModal] = useState<boolean>(false);
+  const [code, setCode] = useState<string>('');
   const [log, setLog] = useState([
     <OpponentConversation
       thumbnail="/resources/image/kaltsit-thumbnail.png"
-      opponentName="켈시"
-      scripts={tutorial}
+      opponentName={USERNAME.KALTSIT}
+      scripts={MESSAGE_KALTSIT_TUTORIAL}
     />,
   ]);
-  const [modal, setModal] = useState(false);
-  const conversationLog = useRef();
-
-  const handleChange = (e) => setCode(e.target.value);
+  const conversationLog =
+    useRef() as React.MutableRefObject<HTMLHeadingElement>;
+  const onChangeText = (e: React.BaseSyntheticEvent | MouseEvent) =>
+    setCode(e.target.value);
   const send = async () => {
-    let result = '';
-    let example = '';
+    let result: string = '';
+    let example: string | undefined = '';
     if (code === '') return;
     if (code.startsWith('/')) {
       const command = code.replace(/\//g, '');
@@ -72,8 +77,8 @@ function MainPage() {
           <MyConversation script={code} />,
           <OpponentConversation
             thumbnail="/resources/image/prts-thumbnail.png"
-            opponentName="PRTS"
-            scripts={['사용 가능한 명령이 아닙니다.']}
+            opponentName={USERNAME.PRTS}
+            scripts={MESSAGE_PRTS_UNDEFINED_OPERATION}
           />,
         ]);
       } else {
@@ -88,8 +93,8 @@ function MainPage() {
         <MyConversation script={code} />,
         <OpponentConversation
           thumbnail="/resources/image/prts-thumbnail.png"
-          opponentName="PRTS"
-          scripts={['사용 가능한 명령이 아닙니다.']}
+          opponentName={USERNAME.PRTS}
+          scripts={MESSAGE_PRTS_UNDEFINED_OPERATION}
         />,
       ]);
     } else {
@@ -98,7 +103,7 @@ function MainPage() {
         <MyConversation script={example !== '' ? example : code} />,
         <OpponentConversation
           thumbnail="/resources/image/kaltsit-thumbnail.png"
-          opponentName="켈시"
+          opponentName={USERNAME.KALTSIT}
           scripts={[result === '' ? '(할 말 없음)' : result]}
         />,
       ]);
@@ -111,12 +116,12 @@ function MainPage() {
   const clear = async () => {
     setLog(
       log
-        .filter((index) => index === -1)
+        .filter((item, index) => index === -1)
         .concat(
           <OpponentConversation
             thumbnail="/resources/image/prts-thumbnail.png"
-            opponentName="PRTS"
-            scripts={[...onClear]}
+            opponentName={USERNAME.PRTS}
+            scripts={[...MESSAGE_PRTS_ON_CLEAR]}
           />,
         ),
     );
@@ -124,13 +129,13 @@ function MainPage() {
 
   return (
     <>
-      <Background />
+      <StyledBackground />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Divider style={{ height: window.height }}>
           <Menu>
             <MenuButton
               icon={<BiCommentX size={20} />}
-              text="대화록 지우기"
+              text={BUTTON.CLEAR_LOG}
               aria-label="menu-button-remove-chat-log"
               onClick={() => {
                 clear();
@@ -138,7 +143,7 @@ function MainPage() {
             />
             <MenuButton
               icon={<BiHelpCircle size={20} />}
-              text="사용법"
+              text={BUTTON.HOWTO}
               aria-label="menu-button-show-help"
               onClick={() => {
                 setModal(true);
@@ -146,7 +151,7 @@ function MainPage() {
             />
             <MenuButton
               icon={<AiOutlineGithub size={20} />}
-              text="GitHub"
+              text={BUTTON.GITHUB_REPO}
               aria-label="menu-button-github-repo"
               onClick={() =>
                 (location.href =
@@ -169,11 +174,11 @@ function MainPage() {
           </Conversation>
           <Input>
             <Textarea
-              placeholder="코드 또는 명령을 입력하세요..."
-              onChange={handleChange}
+              placeholder={PLACEHOLDER}
+              onChange={onChangeText}
               value={code}
             />
-            <SendButton text="전송" onClick={send} />
+            <SendButton text={BUTTON.SEND} onClick={send} />
           </Input>
         </Divider>
       </div>
@@ -186,14 +191,14 @@ function MainPage() {
           >
             <Modal
               onClose={() => setModal(false)}
-              content={<Markdown markdown="resources/markdown/manual.md" />}
-              size={MODAL_FULL}
+              content={<Markdown />}
+              size={MODAL.FULL}
             />
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
-}
+};
 
 export default MainPage;

@@ -1,8 +1,10 @@
 /**
  * Textarea
  */
+// Styled-components
 import styled from 'styled-components';
 
+// StyledComponent
 const Textarea = styled.textarea`
   padding: 0.75rem;
   border: 2px solid white;

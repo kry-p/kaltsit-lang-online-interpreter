@@ -1,10 +1,33 @@
 /**
  * Conversation
  */
-import React from 'react';
+// React core
+import * as React from 'react';
+
+// Styled-components
 import styled, { css } from 'styled-components';
+
+// Palette
 import palette from '../lib/palette';
 
+// Styled-components props interface
+interface ConversationInterface {
+  left?: boolean;
+  right?: boolean;
+}
+
+// React functional component variable types
+type OpponentConversationProps = {
+  thumbnail: string;
+  opponentName: string;
+  scripts: string[];
+};
+
+type MyConversationProps = {
+  script: string | undefined;
+};
+
+// StyledComponent
 export const Conversation = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,7 +41,7 @@ export const Conversation = styled.div`
   overflow: auto;
 `;
 
-export const ConversationItem = styled.div`
+export const ConversationItem = styled.div<ConversationInterface>`
   display: flex;
   justify-content: flex-start;
 
@@ -42,7 +65,7 @@ export const ConversationItem = styled.div`
     `}
 `;
 
-export const Bubble = styled.div`
+export const Bubble = styled.div<ConversationInterface>`
   padding: 1rem;
   border-radius: 1rem;
   ${(props) =>
@@ -81,7 +104,12 @@ const StyledOpponentConversationDescription = styled.div`
   grid-template-rows: 1fr;
 `;
 
-export const OpponentConversation = ({ thumbnail, opponentName, scripts }) => {
+// React functional component
+export const OpponentConversation = ({
+  thumbnail,
+  opponentName,
+  scripts,
+}: OpponentConversationProps) => {
   return (
     <StyledOpponentConversation>
       <StyledOpponentThumbnail
@@ -107,9 +135,9 @@ export const OpponentConversation = ({ thumbnail, opponentName, scripts }) => {
   );
 };
 
-export const MyConversation = ({ script }) => {
+export const MyConversation = ({ script }: MyConversationProps) => {
   return (
-    <ConversationItem key={script} right>
+    <ConversationItem right>
       <Bubble
         right
         dangerouslySetInnerHTML={{

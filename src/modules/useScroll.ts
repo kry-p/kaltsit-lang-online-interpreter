@@ -19,6 +19,7 @@ export default function useScroll() {
         window.removeEventListener('scroll', handleScroll);
       };
     }
+    return;
   }, []);
 
   return scroll;

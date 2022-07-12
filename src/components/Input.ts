@@ -1,8 +1,10 @@
 /**
  * Input
  */
+// Styled-components
 import styled from 'styled-components';
 
+// StyledComponent
 const Input = styled.div`
   display: grid;
   grid-template-columns: auto 4rem;

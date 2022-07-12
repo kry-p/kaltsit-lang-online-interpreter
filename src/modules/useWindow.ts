@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 
 export default function useWindow() {
   const [windowInfo, setWindowInfo] = useState({
-    width: undefined,
-    height: undefined,
+    width: 0,
+    height: 0,
   });
 
   const handleResize = () => {
@@ -25,6 +25,7 @@ export default function useWindow() {
         window.removeEventListener('resize', handleResize);
       };
     }
+    return;
   }, []);
 
   return windowInfo;

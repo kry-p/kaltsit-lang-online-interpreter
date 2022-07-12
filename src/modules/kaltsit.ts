@@ -1,9 +1,9 @@
 /**
  * Kaltsit-language interpreter
  */
-import readFromModule from 'kaltsit-lang-node/dist/readmodule';
+import readFromModule from 'kaltsit-lang-node/bin/readmodule';
 
-const run = (code) => {
+const run = (code: string) => {
   const result = readFromModule(code);
   return result;
 };

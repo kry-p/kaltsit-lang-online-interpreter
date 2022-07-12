@@ -1,10 +1,30 @@
 /**
  * Button
  */
-import React from 'react';
+// React core
+import * as React from 'react';
+
+// Styled-components
 import styled, { css } from 'styled-components';
 
-const StyledMenuButton = styled.button`
+// Styled-components props interface
+interface MenuButtonInterface {
+  iconIncluded: boolean;
+  small?: boolean;
+  centered?: boolean;
+}
+// React functional component variable types
+type ButtonProps = {
+  text?: string;
+  iconIncluded?: boolean;
+  icon?: React.ReactNode;
+  small?: boolean;
+  centered?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+// StyledComponent
+const StyledMenuButton = styled.button<MenuButtonInterface>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -64,17 +84,18 @@ const StyledRawButton = styled.button`
   font-size: 1.2rem;
 `;
 
-export const MenuButton = ({ icon, text, ...props }) => (
+// React functional component
+export const MenuButton = ({ icon, text, ...props }: ButtonProps) => (
   <StyledMenuButton {...props} iconIncluded={!!icon}>
     {icon}
-    <div style={icon && { paddingLeft: '0.5rem' }}>{text}</div>
+    <div style={{ paddingLeft: icon ? '0.5rem' : '0rem' }}>{text}</div>
   </StyledMenuButton>
 );
 
-export const SendButton = ({ text, ...props }) => (
+export const SendButton = ({ text, ...props }: ButtonProps) => (
   <MenuButton {...props} small centered text={text} />
 );
 
-export const RawButton = ({ item }) => (
-  <StyledRawButton>{item}</StyledRawButton>
+export const RawButton = ({ icon }: ButtonProps) => (
+  <StyledRawButton>{icon}</StyledRawButton>
 );

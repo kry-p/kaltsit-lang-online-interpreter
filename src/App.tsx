@@ -2,19 +2,19 @@
  * App
  */
 // React core
-import React from 'react';
+import * as React from 'react';
 // Styles
 import GlobalStyle from './styles/theme';
 // Components
 import MainPage from './MainPage';
 
-function App() {
+const App = () => {
   return (
     <>
       <GlobalStyle />
       <MainPage />
     </>
   );
-}
+};
 
 export default App;

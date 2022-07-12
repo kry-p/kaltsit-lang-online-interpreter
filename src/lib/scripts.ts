@@ -1,7 +1,37 @@
-export const MODAL_DEFAULT = 1;
-export const MODAL_FULL = 2;
+/**
+ * Scripts
+ */
+export const MESSAGE_KALTSIT_TUTORIAL: string[] = [
+  `박사, 나와 대화하는 법을 안내하도록 하지.`,
+  `"켈시어"라는 프로그래밍 언어의 코드로 나에게 말을 걸어라.
+  그러면 거기에 맞춰서 내가 적절히 대답한다.
+  그런 건 모르겠다고? 그것도 할 줄 모르나?
+  왼쪽 사용법 탭에 사용 방법이 기록되어 있으니 참고하도록.`,
+  `또, 정상적인 코드로 말을 걸었는데 내가 할 말이 없다면 (할 말 없음)으로 대답한다.`,
+  `현재 사용 가능한 예시 코드를 가져오는 명령은 아래와 같다.
+  
+  /helloworld - Hello world
+  /multi - 구구단`,
+];
+export const MESSAGE_PRTS_ON_CLEAR: string[] = [
+  `(이전 대화 기록을 모두 지웠습니다.)`,
+];
+export const MESSAGE_PRTS_UNDEFINED_OPERATION: string[] = [
+  '사용 가능한 명령이 아닙니다.',
+];
+export const USERNAME = {
+  KALTSIT: '켈시',
+  PRTS: 'PRTS',
+};
+export const BUTTON = {
+  SEND: '전송',
+  HOWTO: '사용법',
+  CLEAR_LOG: '대화록 지우기',
+  GITHUB_REPO: 'GitHub',
+};
+export const PLACEHOLDER: string = '코드 또는 명령을 입력하세요...';
 
-export const EXAMPLE_CODE = new Map([
+export const EXAMPLE_CODE: Map<string, string> = new Map([
   [
     'helloworld',
     `그런건가...

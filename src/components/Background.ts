@@ -1,9 +1,11 @@
 /**
  * Background
  */
+// Styled-components
 import styled from 'styled-components';
 
-const Background = styled.div`
+// StyledComponent
+const StyledBackground = styled.div`
   position: fixed;
   top: -12.5vh;
   left: -12.5vw;
@@ -18,4 +20,4 @@ const Background = styled.div`
   z-index: -1;
 `;
 
-export default Background;
+export default StyledBackground;

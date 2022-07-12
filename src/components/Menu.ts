@@ -1,8 +1,10 @@
 /**
  * Menu
  */
+// Styled-components
 import styled from 'styled-components';
 
+// StyledComponent
 const Menu = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
