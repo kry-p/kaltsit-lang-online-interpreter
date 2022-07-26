@@ -3,14 +3,14 @@
  */
 // React core
 import * as React from 'react';
-import { useState, useRef } from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 // Framer-motion
-import { motion, AnimatePresence } from 'framer-motion';
+import {motion, AnimatePresence} from 'framer-motion';
 import animation from './styles/animation';
 
 // Components
-import { MenuButton, SendButton } from './components/Button';
+import {MenuButton, SendButton} from './components/Button';
 import {
   Conversation,
   OpponentConversation,
@@ -26,19 +26,18 @@ import Modal from './components/Modal';
 import Textarea from './components/Textarea';
 
 // Icons
-import { BiCommentX } from '@react-icons/all-files/bi/BiCommentX';
-import { BiHelpCircle } from '@react-icons/all-files/bi/BiHelpCircle';
-import { AiOutlineGithub } from '@react-icons/all-files/ai/AiOutlineGithub';
+import {BiCommentX} from '@react-icons/all-files/bi/BiCommentX';
+import {BiHelpCircle} from '@react-icons/all-files/bi/BiHelpCircle';
+import {AiOutlineGithub} from '@react-icons/all-files/ai/AiOutlineGithub';
 
 // Hooks
 import useWindow from './modules/useWindow';
 
 // Modules
 import run from './modules/kaltsit';
-import sleep from './modules/sleep';
 
 // Misc.
-import { MODAL } from './lib/constants';
+import {MODAL} from './lib/constants';
 import {
   MESSAGE_KALTSIT_TUTORIAL,
   MESSAGE_PRTS_ON_CLEAR,
@@ -109,8 +108,6 @@ const MainPage = () => {
       ]);
     }
     setCode('');
-    await sleep(100);
-    conversationLog.current.scrollTop = conversationLog.current.scrollHeight;
   };
 
   const clear = async () => {
@@ -122,16 +119,21 @@ const MainPage = () => {
             thumbnail="/resources/image/prts-thumbnail.png"
             opponentName={USERNAME.PRTS}
             scripts={[...MESSAGE_PRTS_ON_CLEAR]}
-          />,
-        ),
+          />
+        )
     );
   };
+
+  // Scroll on re-render
+  useEffect(() => {
+    conversationLog.current.scrollTop = conversationLog.current.scrollHeight;
+  }, [log]);
 
   return (
     <>
       <StyledBackground />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Divider style={{ height: window.height }}>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Divider style={{height: window.height}}>
           <Menu>
             <MenuButton
               icon={<BiCommentX size={20} />}
