@@ -213,6 +213,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Build directory
+build
+
 ### yarn ###
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 
@@ -225,12 +228,10 @@ $RECYCLE.BIN/
 
 # if you are NOT using Zero-installs, then:
 # comment the following lines
-!.yarn/cache
+# !.yarn/cache
 
 # and uncomment the following lines
-# .pnp.*
+.pnp.*
 
-# Build directory
-build
 
 # End of https://www.toptal.com/developers/gitignore/api/react,node,yarn,macos,windows
